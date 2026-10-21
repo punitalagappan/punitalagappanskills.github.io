@@ -1,0 +1,139 @@
+# career-ops profile for Punit Alagappan Kasi (user layer; never auto-updated).
+# Facts come from the verified facts file of the new-resume-2027 skill and from
+# Career_OS.md. Immigration specifics are deliberately kept out of this public
+# file: the Career Operating System (Career_OS.md, Part VI) owns that question.
+
+candidate:
+  full_name: "Punit Alagappan Kasi"
+  email: "punitalagappan@gmail.com"
+  phone: "+1-312-735-4346"
+  location: "Chicago, IL"
+  linkedin: "linkedin.com/in/punitak"
+  portfolio_url: "https://famous-gnome-c71a97.netlify.app"
+  photo: ""
+
+target_roles:
+  primary:
+    - "Financial Analyst"
+    - "Risk Analyst"
+    - "Credit Analyst"
+    - "FP&A Analyst"
+    - "Treasury Analyst"
+    - "Investment Analyst"
+    - "Valuation Analyst"
+    - "Corporate Development Analyst"
+  archetypes:
+    - name: "Market, Credit, Enterprise or Regulatory Risk Analyst"
+      level: "Entry / Analyst (0-3 years)"
+      fit: "primary"
+    - name: "Financial Analyst, FP&A, Corporate or Business Finance"
+      level: "Entry / Analyst (0-3 years)"
+      fit: "primary"
+    - name: "Credit Analyst (commercial or corporate banking, credit risk)"
+      level: "Entry / Analyst (0-3 years)"
+      fit: "primary"
+    - name: "Treasury, Liquidity or ALM Analyst"
+      level: "Entry / Analyst (0-3 years)"
+      fit: "primary"
+    - name: "Investment, Equity or Credit Research, Portfolio Analyst"
+      level: "Entry / Analyst (0-3 years)"
+      fit: "primary"
+    - name: "Valuation, M&A, Corporate Development or Transaction Advisory Analyst"
+      level: "Entry / Analyst (0-3 years)"
+      fit: "primary"
+    - name: "Graduate, Rotational or Development Program (finance or risk)"
+      level: "Graduate"
+      fit: "primary"
+    - name: "Compliance, Audit or Controls Analyst (finance)"
+      level: "Entry / Analyst"
+      fit: "secondary"
+    - name: "Quantitative Analyst (finance, not software engineering)"
+      level: "Entry / Analyst"
+      fit: "secondary"
+    - name: "Finance Data or Business Analyst"
+      level: "Entry / Analyst"
+      fit: "adjacent"
+
+narrative:
+  headline: "MS Financial Mathematics candidate (DePaul, December 2026) with risk, compliance and financial-analysis experience"
+  exit_story: "Finishing an MS in Financial Mathematics at DePaul University in December 2026 after risk and finance roles at Gladclif LLC, Federal Bank and Aster DM Healthcare. Targeting a first full-time analyst role in risk, credit, treasury, FP&A, valuation or investments anywhere in the United States."
+  superpowers:
+    - "Making numbers tie: reconciled $300K+ across hospital billing channels and audited 150+ invoices against internal control frameworks"
+    - "Risk monitoring and reporting: tracked exposures and key risk indicators across 40+ corporate accounts and delivered 10+ structured risk reports to senior management"
+    - "Regulatory calendar discipline: zero missed deadlines across multiple SEC filing regimes (Form ADV, Form PF) for a New York private-fund adviser"
+    - "Financial modeling: DCF, DSCR covenant stress tests, Fama-French factor regressions and a 12-year Python backtest"
+  proof_points:
+    - name: "Four-layer quantitative equity model (group project, Python)"
+      url: "https://famous-gnome-c71a97.netlify.app"
+      hero_metric: "12-year backtest: 27% CAGR, 1.53 Sharpe, max drawdown -13% versus -33.7% for the market"
+    - name: "DSCR credit-risk model for an airline (group project, Excel)"
+      url: "https://famous-gnome-c71a97.netlify.app"
+      hero_metric: "Stress-tested debt service coverage against a 1.20x covenant under fuel-cost scenarios (about 0.58x)"
+    - name: "Mercury Athletic valuation (case study, Excel)"
+      url: "https://famous-gnome-c71a97.netlify.app"
+      hero_metric: "DCF with a $314.8M enterprise value"
+    - name: "Monmouth-Robertson M&A analysis (case study, Excel)"
+      url: "https://famous-gnome-c71a97.netlify.app"
+      hero_metric: "Acquisition valuation pricing the target at $61.10 per share"
+
+compensation:
+  target_range: "$65K-90K"
+  currency: "USD"
+  # Entry-level search: a posted range never disqualifies on its own. This floor
+  # only catches postings that are clearly not professional analyst roles.
+  minimum: "$45K"
+  location_flexibility: "Relocates anywhere in the USA at his own expense; on-site, hybrid and remote are all acceptable; location never lowers a score"
+
+location:
+  country: "United States"
+  city: "Chicago"
+  timezone: "CST"
+  visa_status: "Handled by the Career Operating System (Career_OS.md Part VI); not recorded here"
+  authorized_in: ["United States"]
+
+# Hard rules for the dealbreaker gate (modes/oferta.md). A hit needs the JD's OWN
+# sentence stating the fact; silence on sponsorship is never a hit.
+dealbreakers:
+  - "The posting's own text requires US citizenship or permanent residency"
+  - "The posting's own text requires permanent or unrestricted work authorization, or a security clearance"
+  - "The posting's own text says the employer will not sponsor now or in the future"
+  - "The posting requires more than 3 years of experience as a minimum"
+  - "The posting is an internship, co-op or student placement"
+
+language:
+  output: en
+
+follow_ups:
+  enabled: true
+
+followup_cadence:
+  applied_first_days: 7
+  applied_subsequent_days: 7
+  applied_max_followups: 2
+  responded_initial_days: 1
+  responded_subsequent_days: 3
+  interview_thankyou_days: 1
+
+session_title: off
+
+# Unattended daily runs evaluate many postings; keep the model tier cheap.
+spend_tier: economy
+
+# Documents are NOT produced by career-ops for Punit. His resume and cover-letter
+# standards (renderer v8.1, Resume_2027_Standard.md, Cover_Letter_2027_Standard.md)
+# live in the Career Operating System. "text" keeps every career-ops route
+# PDF-free; modes/_custom.md forbids CV and letter generation in unattended runs.
+cv:
+  output_format: "text"
+auto_pdf_score_threshold: 9
+
+pipeline:
+  triage_threshold: 3.5
+  triage_min_urls: 3
+
+cover_letter:
+  primary_domain: "finance, risk and compliance analysis"
+
+scan:
+  extractor: cli
+  timeout_seconds: 230

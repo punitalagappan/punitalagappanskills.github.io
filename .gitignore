@@ -1,0 +1,16 @@
+# career-ops: the upstream checkout is fetched at run time by tools/careerops_bootstrap.sh
+/career-ops/
+
+# career-ops runtime data (private: tracker, reports, saved JDs). The daily routine
+# persists it to Drive (Job_Search_Master/career-ops/careerops_state.txt), never to git.
+/career-ops-data/data/
+/career-ops-data/reports/
+/career-ops-data/output/
+/career-ops-data/jds/
+/career-ops-data/batch/
+/career-ops-data/interview-prep/
+/career-ops-data/documents/
+/career-ops-data/.career-ops-web/
+
+node_modules/
+__pycache__/

@@ -1,0 +1,345 @@
+# Portal scanner configuration for Punit Alagappan Kasi (user layer).
+#
+# Used by career-ops' zero-token scanner: `node scan.mjs --since 2 --quiet`.
+# The Claude cloud sandbox blocks job-board hosts, so there the daily routine
+# discovers postings through the JobDataLake, Indeed and JobsPipe connectors and
+# only uses title_filter / location_filter below (via tools/careerops_pipeline.py).
+# On a machine with normal internet (Punit's PC) the scanner works as shipped.
+# Validate after editing:  node validate-portals.mjs
+# Check which boards still answer (needs internet):  node verify-portals.mjs
+
+scan_history:
+  recheck_after_days: 45
+
+title_filter:
+  positive:
+    # Finance analyst families related to the MS in Financial Mathematics.
+    # Every family every run; nothing is limited to "risk" or to one title.
+    - "Financial Analyst"
+    - "Finance Analyst"
+    - "Financial Planning"
+    - "FP&A"
+    - "Corporate Finance"
+    - "Business Finance"
+    - "Strategic Finance"
+    - "Commercial Finance"
+    - "Revenue Finance"
+    - "Treasury"
+    - "Liquidity"
+    - "Risk Analyst"
+    - "analyst + risk"
+    - "Credit Analyst"
+    - "analyst + credit"
+    - "Underwriting Analyst"
+    - "Valuation"
+    - "M&A"
+    - "Mergers"
+    - "Corporate Development"
+    - "Transaction Advisory"
+    - "Transaction Services"
+    - "Deal Advisory"
+    - "Investment Banking Analyst"
+    - "Investment Analyst"
+    - "Equity Research"
+    - "Credit Research"
+    - "Research Analyst"
+    - "Portfolio Analyst"
+    - "Portfolio Analytics"
+    - "Performance Analyst"
+    - "Investment Operations"
+    - "Asset Management Analyst"
+    - "Quantitative Analyst"
+    - "Quantitative Research"
+    - "Capital Markets Analyst"
+    - "Pricing Analyst"
+    - "Profitability"
+    - "Analyst Program"
+    - "Rotational Program"
+    - "Development Program"
+    - "Graduate Program"
+    - "Analyst Development"
+    - "Compliance Analyst"
+    - "Regulatory Analyst"
+    - "Audit Analyst"
+    - "Internal Audit"
+    - "Controls Analyst"
+    - "Finance Associate"
+    - "Finance Rotation"
+  negative:
+    # Seniority outside the 0-3 year target band.
+    - "word:Senior"
+    - "word:Sr"
+    - "word:Sr."
+    - "word:Lead"
+    - "word:Principal"
+    - "word:Staff"
+    - "word:Manager"
+    - "word:Director"
+    - "word:Head"
+    - "Vice President"
+    - "word:VP"
+    - "word:SVP"
+    - "word:EVP"
+    - "word:AVP"
+    - "word:Chief"
+    - "word:Officer"
+    - "word:III"
+    - "word:IV"
+    - "Executive"
+    - "Partner"
+    # Student placements and non-finance "analyst" jobs.
+    - "word:Intern"
+    - "word:Interns"
+    - "Internship"
+    - "Co-op"
+    - "Apprentice"
+    - "Engineer"
+    - "Developer"
+    - "Software"
+    - "Scientist"
+    - "Nurse"
+    - "Clinical"
+    - "Marketing"
+    - "Sales Analyst"
+    - "Supply Chain"
+    - "Logistics"
+    - "Cybersecurity"
+    - "Security Analyst"
+    - "Systems Analyst"
+    - "Business Systems"
+    - "Salesforce"
+    - "SAP "
+    - "Workday Analyst"
+    - "Payroll"
+    - "Benefits Analyst"
+    - "HR Analyst"
+    - "Recruiting"
+    - "Accountant"
+    - "Bookkeeper"
+    - "Tax Analyst"
+    - "Loan Officer"
+    - "Teller"
+    - "Collector"
+  seniority_boost: []
+
+# Location: he relocates anywhere in the USA at his own expense. Block the
+# common foreign hubs; always admit an explicit United States location.
+location_filter:
+  always_allow:
+    - "United States"
+    - "USA"
+    - "US Remote"
+    - "Remote - US"
+    - "Remote (US)"
+  allow: []
+  block:
+    - "India"
+    - "Bengaluru"
+    - "Bangalore"
+    - "Mumbai"
+    - "Hyderabad"
+    - "Pune"
+    - "Chennai"
+    - "United Kingdom"
+    - "London"
+    - "Ireland"
+    - "Dublin"
+    - "Germany"
+    - "Berlin"
+    - "France"
+    - "Paris"
+    - "Netherlands"
+    - "Amsterdam"
+    - "Spain"
+    - "Poland"
+    - "Singapore"
+    - "Hong Kong"
+    - "Japan"
+    - "Tokyo"
+    - "Australia"
+    - "Sydney"
+    - "Brazil"
+    - "Mexico"
+    - "Canada"
+    - "Toronto"
+    - "Vancouver"
+    - "Dubai"
+    - "Philippines"
+    - "Manila"
+
+search_queries:
+  - name: Greenhouse and Ashby - finance analyst, United States
+    query: 'site:job-boards.greenhouse.io OR site:boards.greenhouse.io OR site:jobs.ashbyhq.com "Financial Analyst" OR "Risk Analyst" OR "Credit Analyst" OR "Treasury Analyst" OR "FP&A" "United States"'
+    enabled: true
+  - name: Lever - finance analyst, United States
+    query: 'site:jobs.lever.co "Financial Analyst" OR "Risk Analyst" OR "Credit Analyst" OR "Investment Analyst" OR "Valuation" "United States"'
+    enabled: true
+  - name: Workday - entry finance analyst
+    query: 'site:myworkdayjobs.com "Financial Analyst" OR "Risk Analyst" OR "Credit Analyst" OR "Treasury Analyst" ("entry level" OR "early career" OR "analyst program")'
+    enabled: true
+  - name: eFinancialCareers - analyst United States
+    query: 'site:efinancialcareers.com "Analyst" ("Risk" OR "Credit" OR "Treasury" OR "Valuation" OR "FP&A") "United States"'
+    enabled: true
+
+# Tracked companies: US finance, fintech, trading and insurance employers whose
+# boards career-ops can read without a login. Slugs are best-effort; a wrong one
+# shows up as `slug_gone` in data/portal-health.tsv and is dropped. Employers the
+# Career OS has CLOSED (class D) are deliberately absent: Barclays, FHLBank
+# Chicago, Western Alliance, Macquarie, Coherent Economics, Compass Lexecon.
+tracked_companies:
+  # -- Chicago --
+  - name: DRW
+    careers_url: https://www.drw.com/work-at-drw
+    api: https://boards-api.greenhouse.io/v1/boards/drweng/jobs
+    enabled: true
+  - name: Jump Trading
+    careers_url: https://www.jumptrading.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/jumptrading/jobs
+    enabled: true
+  - name: Akuna Capital
+    careers_url: https://akunacapital.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/akunacapital/jobs
+    enabled: true
+  - name: Belvedere Trading
+    careers_url: https://www.belvederetrading.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/belvederetrading/jobs
+    enabled: true
+  - name: Old Mission
+    careers_url: https://www.oldmissioncapital.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/oldmissioncapital/jobs
+    enabled: true
+  - name: Enfusion
+    careers_url: https://www.enfusion.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/enfusion/jobs
+    enabled: true
+  - name: Avant
+    careers_url: https://www.avant.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/avant/jobs
+    enabled: true
+  - name: Kin Insurance
+    careers_url: https://www.kin.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/kin/jobs
+    enabled: true
+  - name: Northern Trust
+    careers_url: https://ntrs.wd1.myworkdayjobs.com/careers
+    enabled: true
+  - name: Morningstar
+    careers_url: https://morningstar.wd5.myworkdayjobs.com/Americas
+    enabled: true
+  - name: CME Group
+    careers_url: https://cmegroup.wd1.myworkdayjobs.com/External
+    enabled: true
+  - name: Discover Financial Services
+    careers_url: https://discover.wd5.myworkdayjobs.com/Discover
+    enabled: true
+  - name: Allstate
+    careers_url: https://allstate.wd5.myworkdayjobs.com/allstate_careers
+    enabled: true
+  - name: BMO
+    careers_url: https://bmo.wd3.myworkdayjobs.com/External
+    enabled: true
+  # -- National: fintech and payments (Greenhouse / Ashby / Lever) --
+  - name: Stripe
+    careers_url: https://stripe.com/jobs
+    api: https://boards-api.greenhouse.io/v1/boards/stripe/jobs
+    enabled: true
+  - name: Affirm
+    careers_url: https://www.affirm.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/affirm/jobs
+    enabled: true
+  - name: Robinhood
+    careers_url: https://careers.robinhood.com
+    api: https://boards-api.greenhouse.io/v1/boards/robinhood/jobs
+    enabled: true
+  - name: SoFi
+    careers_url: https://www.sofi.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/sofi/jobs
+    enabled: true
+  - name: Brex
+    careers_url: https://www.brex.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/brex/jobs
+    enabled: true
+  - name: Chime
+    careers_url: https://careers.chime.com
+    api: https://boards-api.greenhouse.io/v1/boards/chime/jobs
+    enabled: true
+  - name: Carta
+    careers_url: https://carta.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/carta/jobs
+    enabled: true
+  - name: Gusto
+    careers_url: https://gusto.com/about/careers
+    api: https://boards-api.greenhouse.io/v1/boards/gusto/jobs
+    enabled: true
+  - name: Flexport
+    careers_url: https://www.flexport.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/flexport/jobs
+    enabled: true
+  - name: Clear Street
+    careers_url: https://clearstreet.io/careers
+    api: https://boards-api.greenhouse.io/v1/boards/clearstreet/jobs
+    enabled: true
+  - name: AlphaSense
+    careers_url: https://www.alpha-sense.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/alphasense/jobs
+    enabled: true
+  - name: Ramp
+    careers_url: https://jobs.ashbyhq.com/ramp
+    enabled: true
+  - name: Mercury
+    careers_url: https://jobs.ashbyhq.com/mercury
+    enabled: true
+  - name: Rippling
+    careers_url: https://jobs.ashbyhq.com/rippling
+    enabled: true
+  - name: Deel
+    careers_url: https://jobs.ashbyhq.com/deel
+    enabled: true
+  - name: Plaid
+    careers_url: https://jobs.lever.co/plaid
+    enabled: true
+  # -- National: trading, asset management, banks and insurers --
+  - name: Hudson River Trading
+    careers_url: https://www.hudsonrivertrading.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/wehrtyou/jobs
+    enabled: true
+  - name: Two Sigma
+    careers_url: https://careers.twosigma.com
+    api: https://boards-api.greenhouse.io/v1/boards/twosigma/jobs
+    enabled: true
+  - name: IMC Trading
+    careers_url: https://www.imc.com/us/careers
+    api: https://boards-api.greenhouse.io/v1/boards/imc/jobs
+    enabled: true
+  - name: Optiver
+    careers_url: https://optiver.com/working-at-optiver/career-opportunities
+    api: https://boards-api.greenhouse.io/v1/boards/optiver/jobs
+    enabled: true
+  - name: Point72
+    careers_url: https://careers.point72.com
+    api: https://boards-api.greenhouse.io/v1/boards/point72/jobs
+    enabled: true
+  - name: Capital One
+    careers_url: https://capitalone.wd12.myworkdayjobs.com/Capital_One
+    enabled: true
+  - name: PNC
+    careers_url: https://pnc.wd5.myworkdayjobs.com/External
+    enabled: true
+  - name: Truist
+    careers_url: https://truist.wd1.myworkdayjobs.com/Careers
+    enabled: true
+  - name: State Street
+    careers_url: https://statestreet.wd1.myworkdayjobs.com/Global
+    enabled: true
+  - name: Mastercard
+    careers_url: https://mastercard.wd1.myworkdayjobs.com/CorporateCareers
+    enabled: true
+  - name: Marsh McLennan
+    careers_url: https://mmc.wd1.myworkdayjobs.com/MMC
+    enabled: true
+  - name: Visa
+    careers_url: https://jobs.smartrecruiters.com/Visa
+    enabled: true
+  - name: PayPal
+    careers_url: https://paypal.eightfold.ai/careers
+    enabled: true

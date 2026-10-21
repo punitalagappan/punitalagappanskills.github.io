@@ -1,0 +1,10 @@
+{
+  "name": "career-ops",
+  "repo": "https://github.com/career-ops-hq/career-ops.git",
+  "commit": "09a554802d4254942aeaf151682e3c824fc2684b",
+  "version": "1.37.0",
+  "pinned_on": "2026-10-21",
+  "skill_path": ".agents/skills/career-ops/SKILL.md",
+  "license": "MIT",
+  "note": "Fetched at run time by tools/careerops_bootstrap.sh into ./career-ops (gitignored). Run `bash tools/careerops_bootstrap.sh --update` to move the pin to upstream HEAD."
+}
