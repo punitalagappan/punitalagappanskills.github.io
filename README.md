@@ -31,6 +31,10 @@ writes `careerops_brief_<date>.md` plus the new `careerops_state.txt` to Drive. 
 message is a phone-sized summary. The 9:41 AM Career OS digest can read the brief's `FEED`
 section once the proposed hook is approved.
 
+The scheduled task needs four connectors attached in its settings on claude.ai (routines):
+Google Drive, JobDataLake, Indeed and JobsPipe. Until they are attached, each run ends with a
+one-line notice instead of a brief.
+
 ### Run it yourself
 
 ```bash
